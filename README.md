@@ -1,4 +1,4 @@
-# React Vite Template
+# GitHub User List
 
 ---
 
