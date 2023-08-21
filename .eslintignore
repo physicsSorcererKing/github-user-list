@@ -1,0 +1,7 @@
+# ref: https://eslint.org/docs/latest/use/configure/ignore
+# node_modules, dot-files(except for .eslintrc.*) as well as dot-folders and their contents are ignored by default.
+build
+coverage
+dist
+dist-ssr
+*.local
