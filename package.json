@@ -23,6 +23,10 @@
     "template"
   ],
   "dependencies": {
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-relay": "15.0.0",
@@ -55,6 +59,7 @@
     "lint-staged": "^14.0.0",
     "prettier": "3.0.2",
     "relay-compiler": "15.0.0",
+    "sass": "^1.66.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "vite-plugin-relay": "2.0.0"
