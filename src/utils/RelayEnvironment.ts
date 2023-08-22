@@ -1,21 +1,24 @@
 import {
   Environment,
+  FetchFunction,
   Network,
   RecordSource,
   Store,
-  FetchFunction,
-} from "relay-runtime";
+} from 'relay-runtime';
 
-const HTTP_ENDPOINT = "http://localhost:5000/graphql";
+import { VITE_GITHUB_API_URL, VITE_GITHUB_TOKEN } from '@/utils/const/env.ts';
+
+const HTTP_ENDPOINT = VITE_GITHUB_API_URL;
 
 const fetchFn: FetchFunction = async (request, variables) => {
   const resp = await fetch(HTTP_ENDPOINT, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Accept:
-        "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
-      "Content-Type": "application/json",
+        'application/graphql-response+json; charset=utf-8, application/json; charset=utf-8',
+      'Content-Type': 'application/json',
       // <-- Additional headers like 'Authorization' would go here
+      Authorization: `Bearer ${VITE_GITHUB_TOKEN}`,
     },
     body: JSON.stringify({
       query: request.text, // <-- The GraphQL document composed by Relay
