@@ -1,9 +1,9 @@
-import { StrictMode, Suspense } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RelayEnvironmentProvider } from 'react-relay';
-import { ChakraProvider, Spinner } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
-import { App } from '@/components/App.tsx';
+import { App } from '@/App.tsx';
 
 import { RelayEnvironment } from './utils/RelayEnvironment.ts';
 
@@ -16,9 +16,7 @@ root.render(
   <StrictMode>
     <ChakraProvider>
       <RelayEnvironmentProvider environment={RelayEnvironment}>
-        <Suspense fallback={<Spinner />}>
-          <App />
-        </Suspense>
+        <App />
       </RelayEnvironmentProvider>
     </ChakraProvider>
   </StrictMode>,

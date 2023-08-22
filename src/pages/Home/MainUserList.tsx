@@ -2,9 +2,9 @@ import { Container } from '@chakra-ui/react';
 
 import { UserList } from '@/components/List/UserList.tsx';
 
-export const App = () => {
+export const MainUserList: FC = () => {
   return (
-    <Container maxW={'container.xl'} minH={'100vh'}>
+    <Container maxW={'container.xl'}>
       <UserList />
     </Container>
   );
