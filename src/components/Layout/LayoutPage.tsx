@@ -1,9 +1,10 @@
+import { Outlet } from 'react-router';
 import { Box } from '@chakra-ui/react';
 
-export const LayoutPage: FC<ChildrenProp> = ({ children }) => {
+export const LayoutPage: FC<ChildrenProp> = () => {
   return (
-    <Box as={'main'} minW={'100vw'} minH={'100vh'}>
-      {children}
+    <Box minW={'100vw'} minH={'100vh'}>
+      <Outlet />
     </Box>
   );
 };
