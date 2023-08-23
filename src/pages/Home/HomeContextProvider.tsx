@@ -38,6 +38,7 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
 
   const edges = data?.search?.edges;
 
+  // Add incomming edges to allEdges
   useEffect(() => {
     if (!edges) return;
 
@@ -45,7 +46,6 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
       // prevent duplicated edges
       const newEdges = edges.filter((edge) => {
         const cursor = edge?.cursor;
-        // const node = edge?.node;
         if (!cursor) return false;
         return !prev.find((e) => e?.cursor === cursor);
       });
