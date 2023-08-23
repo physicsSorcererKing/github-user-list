@@ -7,9 +7,7 @@ export const UserListQuery = graphql`
         cursor
         node {
           ... on User {
-            login
-            avatarUrl
-            isSiteAdmin
+            ...UserFragment
           }
         }
       }

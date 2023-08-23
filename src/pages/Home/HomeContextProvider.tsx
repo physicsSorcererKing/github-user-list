@@ -18,6 +18,7 @@ export interface HomeContextValue {
   cursor: string | null;
   hasMore: boolean;
   loadMore: () => void;
+  data: UserListQuery$data;
   allEdges: NonNullable<UserListQuery$data['search']['edges']>;
 }
 export const HomeContext = createContext({} as HomeContextValue);
@@ -43,9 +44,10 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
     setAllEdges((prev) => {
       // prevent duplicated edges
       const newEdges = edges.filter((edge) => {
-        const node = edge?.node;
-        if (!node) return false;
-        return !prev.find((e) => e?.node?.login === node.login);
+        const cursor = edge?.cursor;
+        // const node = edge?.node;
+        if (!cursor) return false;
+        return !prev.find((e) => e?.cursor === cursor);
       });
       return [...prev, ...newEdges];
     });
@@ -74,6 +76,7 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
         hasMore,
         loadMore,
         allEdges,
+        data,
       }}
     >
       {children}

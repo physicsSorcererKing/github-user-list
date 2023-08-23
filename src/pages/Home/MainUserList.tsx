@@ -14,9 +14,10 @@ export const MainUserList: FC = () => {
     const result: ReactElement[] = [];
 
     allEdges.forEach((edge) => {
+      const cursor = edge?.cursor;
       const node = edge?.node;
-      if (!node) return null;
-      result.push(<UserListItem key={node.login} user={node} />);
+      if (!node || !cursor) return null;
+      result.push(<UserListItem key={edge?.cursor} user={node} />);
     });
     return result;
   }, [allEdges]);

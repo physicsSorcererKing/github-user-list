@@ -1,17 +1,16 @@
+import { useFragment } from 'react-relay';
 import { Badge, Flex, Image, ListItem, Text } from '@chakra-ui/react';
 
-type User = {
-  login?: string;
-  avatarUrl?: string;
-  isSiteAdmin?: boolean;
-};
+import { UserFragment$key } from '@/pages/Home/__generated__/UserFragment.graphql.ts';
+import { UserFragment } from '@/pages/Home/UserFragment.ts';
 
 type UserListItemProps = {
-  user: User;
+  user: UserFragment$key;
 };
 
 export const UserListItem: FC<UserListItemProps> = ({ user }) => {
-  const { login, avatarUrl, isSiteAdmin } = user;
+  const data = useFragment(UserFragment, user);
+  const { login, avatarUrl, isSiteAdmin } = data;
   return (
     <ListItem
       pl={4}
@@ -26,7 +25,7 @@ export const UserListItem: FC<UserListItemProps> = ({ user }) => {
       <Flex gap={4}>
         <Image
           src={avatarUrl}
-          alt={login}
+          alt={`@${login}`}
           boxSize={'48px'}
           objectFit={'cover'}
           borderRadius={'full'}
