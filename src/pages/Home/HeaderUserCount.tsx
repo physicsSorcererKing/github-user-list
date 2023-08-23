@@ -1,4 +1,4 @@
-import { Container, Heading } from '@chakra-ui/react';
+import { Container, Flex, Heading } from '@chakra-ui/react';
 
 import { useHomeContext } from '@/pages/Home/HomeContextProvider.tsx';
 
@@ -6,19 +6,20 @@ export const HeaderUserCount: FC = () => {
   const { allEdges } = useHomeContext();
 
   return (
-    <Container
+    <Flex
       as={'header'}
-      maxW={'container.xl'}
+      w={'100vw'}
       h={'60px'}
       bg={'purple.600'}
-      display={'flex'}
-      justifyContent={'center'}
-      alignItems={'center'}
+      justify={'center'}
+      align={'center'}
       pos={'fixed'}
     >
-      <Heading as={'h2'} size={'lg'} textAlign={'center'}>
-        User Count: {allEdges.length}
-      </Heading>
-    </Container>
+      <Container maxW={'container.xl'}>
+        <Heading as={'h2'} size={'lg'} textAlign={'center'}>
+          User Count: {allEdges.length}
+        </Heading>
+      </Container>
+    </Flex>
   );
 };

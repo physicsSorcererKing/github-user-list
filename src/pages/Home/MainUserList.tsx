@@ -22,13 +22,26 @@ export const MainUserList: FC = () => {
     return result;
   }, [allEdges]);
 
+  const dataLength: number = userListItems?.length ?? 0;
+
   return (
-    <Container as={'main'} maxW={'container.xl'} pt={'60px'}>
+    <Container
+      as={'main'}
+      id={'main-scrollable'}
+      maxW={'container.xl'}
+      pt={'60px'}
+      h={`min(100vh, ${dataLength * 50}px)`}
+      bg={'purple.900'}
+      maxH={'100vh'}
+      overflowY={'auto'}
+    >
       <InfiniteScroll
         next={loadMore}
         hasMore={hasMore}
-        loader={<Text>Loading...</Text>}
-        dataLength={userListItems?.length ?? 0}
+        loader={<Text>⇣Loading...</Text>}
+        dataLength={dataLength}
+        scrollableTarget={'main-scrollable'}
+        scrollThreshold={'50px'}
       >
         <List>{userListItems}</List>
       </InfiniteScroll>
