@@ -54,7 +54,3 @@ Adhering to the principles of the MVVM architecture, I've organized pure UI comp
   - alias paths '@'
 - Husky & Lint-staged
   - pre-commit hook to execute ESLint & Prettier
-
-```
-
-```
