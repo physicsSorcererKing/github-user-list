@@ -5,3 +5,6 @@ coverage
 dist
 dist-ssr
 *.local
+
+# relay generated files
+__generated__

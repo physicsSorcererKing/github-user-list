@@ -4,13 +4,14 @@
   "license": "MIT",
   "author": "physicsSorcererKing",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently yarn:watch-* -c auto",
     "build": "relay-compiler --validate && tsc && vite build",
     "lint": "cross-env NODE_ENV=production eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "cross-env NODE_ENV=production eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
     "prepare": "husky install",
-    "relay": "relay-compiler --watch"
+    "watch-dev": "vite",
+    "watch-relay": "relay-compiler --watch"
   },
   "keywords": [
     "react",
@@ -20,7 +21,10 @@
     "prettier",
     "husky",
     "lint-staged",
-    "template"
+    "template",
+    "github-api",
+    "relay",
+    "graphql"
   ],
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
@@ -29,6 +33,7 @@
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-relay": "15.0.0",
     "react-router-dom": "^6.15.0",
     "relay-runtime": "15.0.0"
@@ -45,6 +50,7 @@
     "@typescript-eslint/parser": "^6.4.0",
     "@vitejs/plugin-react": "^4.0.4",
     "babel-plugin-relay": "15.0.0",
+    "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
