@@ -1,6 +1,10 @@
 import { Container, Heading } from '@chakra-ui/react';
 
+import { useHomeContext } from '@/pages/Home/HomeContextProvider.tsx';
+
 export const HeaderUserCount: FC = () => {
+  const { allEdges } = useHomeContext();
+
   return (
     <Container
       as={'header'}
@@ -12,7 +16,7 @@ export const HeaderUserCount: FC = () => {
       alignItems={'center'}
     >
       <Heading as={'h2'} size={'lg'} textAlign={'center'}>
-        User Count: {20}
+        User Count: {allEdges.length}
       </Heading>
     </Container>
   );
