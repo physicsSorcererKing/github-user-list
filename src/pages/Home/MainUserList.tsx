@@ -23,7 +23,7 @@ export const MainUserList: FC = () => {
   }, [allEdges]);
 
   return (
-    <Container as={'main'} maxW={'container.xl'}>
+    <Container as={'main'} maxW={'container.xl'} pt={'60px'}>
       <InfiniteScroll
         next={loadMore}
         hasMore={hasMore}

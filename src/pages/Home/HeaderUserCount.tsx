@@ -10,10 +10,11 @@ export const HeaderUserCount: FC = () => {
       as={'header'}
       maxW={'container.xl'}
       h={'60px'}
-      bg={'blackAlpha.200'}
+      bg={'purple.600'}
       display={'flex'}
       justifyContent={'center'}
       alignItems={'center'}
+      pos={'fixed'}
     >
       <Heading as={'h2'} size={'lg'} textAlign={'center'}>
         User Count: {allEdges.length}
