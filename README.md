@@ -45,6 +45,7 @@ Adhering to the principles of the MVVM architecture, I've organized pure UI comp
 - TypeScript 5
 - React 18
 - React Router 6
+- Relay 16
 - ESLint
   - automatically remove unused imports
   - sorted imports
