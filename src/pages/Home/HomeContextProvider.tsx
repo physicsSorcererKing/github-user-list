@@ -1,40 +1,34 @@
 import {
   createContext,
+  Dispatch,
+  SetStateAction,
   useCallback,
   useContext,
   useEffect,
   useState,
 } from 'react';
-import { useLazyLoadQuery } from 'react-relay';
 
-import {
-  UserListQuery as UserListQueryType,
-  UserListQuery$data,
-} from '@/pages/Home/__generated__/UserListQuery.graphql';
-import { UserListQuery } from '@/pages/Home/UserListQuery.ts';
+import { UserListQuery$data } from '@/pages/Home/__generated__/UserListQuery.graphql';
 
 export interface HomeContextValue {
   loadTimes: number;
   cursor: string | null;
   hasMore: boolean;
   loadMore: () => void;
-  data: UserListQuery$data;
+  data: UserListQuery$data | null;
+  setData: Dispatch<SetStateAction<UserListQuery$data | null>>;
   allEdges: NonNullable<UserListQuery$data['search']['edges']>;
 }
 export const HomeContext = createContext({} as HomeContextValue);
 export const useHomeContext = () => useContext(HomeContext);
 
 export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
+  const [data, setData] = useState<UserListQuery$data | null>(null);
   const [loadTimes, setLoadTimes] = useState<number>(0);
   const [cursor, setCursor] = useState<string | null>(null);
   const [allEdges, setAllEdges] = useState<
     NonNullable<UserListQuery$data['search']['edges']>
   >([]);
-
-  const data = useLazyLoadQuery<UserListQueryType>(UserListQuery, {
-    count: 20,
-    since: cursor,
-  });
 
   const edges = data?.search?.edges;
 
@@ -53,11 +47,12 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
     });
   }, [edges]);
 
-  // Only refetch users 4 times (max 100 users)
-  const hasMore = loadTimes < 4;
+  // Only refetch users 40 times (max 1000 users)
+  const hasMore: boolean = edges
+    ? !!(edges.length && loadTimes < 40)
+    : loadTimes === 0;
 
   const loadMore = useCallback(() => {
-    console.log('loadMore');
     if (!hasMore) return;
 
     if (edges && edges.length) {
@@ -77,6 +72,7 @@ export const HomeContextProvider: FC<ChildrenProp> = ({ children }) => {
         loadMore,
         allEdges,
         data,
+        setData,
       }}
     >
       {children}

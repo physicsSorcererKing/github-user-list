@@ -1,9 +1,10 @@
-import { ReactElement, useMemo } from 'react';
+import { ReactElement, Suspense, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Container, List, Text } from '@chakra-ui/react';
+import { Container, Flex, List, Spinner } from '@chakra-ui/react';
 
 import { UserListItem } from '@/components/ListItem/UserListItem.tsx';
 import { useHomeContext } from '@/pages/Home/HomeContextProvider.tsx';
+import { MainUserListLoader } from '@/pages/Home/MainUserListLoader.tsx';
 
 export const MainUserList: FC = () => {
   const { allEdges, loadMore, hasMore } = useHomeContext();
@@ -38,7 +39,17 @@ export const MainUserList: FC = () => {
       <InfiniteScroll
         next={loadMore}
         hasMore={hasMore}
-        loader={<Text>⇣Loading...</Text>}
+        loader={
+          <Suspense
+            fallback={
+              <Flex h={'60px'} justify={'center'} align={'center'}>
+                <Spinner />
+              </Flex>
+            }
+          >
+            <MainUserListLoader />
+          </Suspense>
+        }
         dataLength={dataLength}
         scrollableTarget={'main-scrollable'}
         scrollThreshold={'50px'}
