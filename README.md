@@ -25,7 +25,8 @@ And then you can run the following commands to start the project:
 - for development
 
 ```bash
-yarn dev # will start a dev server and run relay watcher concurrently
+yarn dev # will compile relay and start a dev server
+# use "yarn watch" will start a dev server and run relay compiler watcher concurrently (must to install watchman)
 ```
 
 - build production
