@@ -4,6 +4,7 @@ import { RelayEnvironmentProvider } from 'react-relay';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { App } from '@/App.tsx';
+import { theme } from '@/utils/theme.ts';
 
 import { RelayEnvironment } from './utils/RelayEnvironment.ts';
 
@@ -14,7 +15,7 @@ const root = createRoot(container);
 
 root.render(
   <StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RelayEnvironmentProvider environment={RelayEnvironment}>
         <App />
       </RelayEnvironmentProvider>
