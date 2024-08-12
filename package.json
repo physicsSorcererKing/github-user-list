@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "relay-compiler && vite",
     "watch": "concurrently yarn:watch-* -c auto",
-    "build": "relay-compiler --validate && tsc && vite build",
+    "build": "relay-compiler && relay-compiler --validate && tsc && vite build",
     "lint": "cross-env NODE_ENV=production eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "cross-env NODE_ENV=production eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
